@@ -1,5 +1,5 @@
-def format_timestamp(seconds: float) -> str:
-    """Convert a float number of seconds into an SRT timestamp (HH:MM:SS,mmm)."""
+def format_timestamp_srt(seconds: float) -> str:
+    """Convert seconds to an SRT timestamp (HH:MM:SS,mmm — comma millis)."""
     hours = int(seconds // 3600)
     minutes = int((seconds % 3600) // 60)
     secs = int(seconds % 60)
@@ -7,22 +7,56 @@ def format_timestamp(seconds: float) -> str:
     return f"{hours:02d}:{minutes:02d}:{secs:02d},{millis:03d}"
 
 
-def segments_to_srt(segments: list) -> str:
-    """Build the full SRT text from a list of whisper segments.
+def format_timestamp_vtt(seconds: float) -> str:
+    """Convert seconds to a VTT timestamp (HH:MM:SS.mmm — dot millis)."""
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    secs = int(seconds % 60)
+    millis = int((seconds % 1) * 1000)
+    return f"{hours:02d}:{minutes:02d}:{secs:02d}.{millis:03d}"
 
-    Each segment is a dict: {"start": float, "end": float, "text": str}.
-    """
-    srt_content = []
+
+def segments_to_srt(segments: list) -> str:
+    """Build SRT text. Each segment: {"start": float, "end": float, "text": str}."""
+    blocks = []
     for i, segment in enumerate(segments, 1):
-        start = format_timestamp(segment["start"])
-        end = format_timestamp(segment["end"])
+        start = format_timestamp_srt(segment["start"])
+        end = format_timestamp_srt(segment["end"])
         text = segment["text"].strip()
-        srt_content.append(f"{i}\n{start} --> {end}\n{text}\n")
-    return "\n".join(srt_content)
+        blocks.append(f"{i}\n{start} --> {end}\n{text}\n")
+    return "\n".join(blocks)
+
+
+def segments_to_vtt(segments: list) -> str:
+    """Build WebVTT text (WEBVTT header, no cue numbers)."""
+    blocks = ["WEBVTT\n"]
+    for segment in segments:
+        start = format_timestamp_vtt(segment["start"])
+        end = format_timestamp_vtt(segment["end"])
+        text = segment["text"].strip()
+        blocks.append(f"{start} --> {end}\n{text}\n")
+    return "\n".join(blocks)
+
+
+def segments_to_txt(segments: list) -> str:
+    """Build a plain text transcript (no timestamps)."""
+    return "\n".join(segment["text"].strip() for segment in segments if segment["text"].strip())
+
+
+def save(segments: list, output_path: str, fmt: str = "srt") -> None:
+    """Write segments to a file in srt/vtt/txt format (UTF-8)."""
+    fmt = (fmt or "srt").lower()
+    if fmt == "vtt":
+        content = segments_to_vtt(segments)
+    elif fmt == "txt":
+        content = segments_to_txt(segments)
+    else:
+        content = segments_to_srt(segments)
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(content)
 
 
 def save_srt(segments: list, output_path: str) -> None:
-    """Write the segments to a .srt file at the given path (UTF-8)."""
-    srt_content = segments_to_srt(segments)
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(srt_content)
+    """Convenience wrapper for saving SRT."""
+    save(segments, output_path, "srt")

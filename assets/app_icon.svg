@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <!-- Glow Effect -->
+    <filter id="icon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Linear Gradient -->
+    <linearGradient id="waveGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Waveform Bars -->
+  <g transform="translate(1, 0)">
+    <!-- Bar 1 -->
+    <rect x="12" y="38" width="10" height="24" rx="5" fill="url(#waveGrad)" opacity="0.5" />
+    
+    <!-- Bar 2 (Peak) -->
+    <rect x="28" y="18" width="10" height="64" rx="5" fill="url(#waveGrad)" filter="url(#icon-glow)" />
+    
+    <!-- Bar 3 (Center Anchor) -->
+    <rect x="44" y="28" width="10" height="44" rx="5" fill="url(#waveGrad)" />
+    
+    <!-- Bar 4 (Peak) -->
+    <rect x="60" y="14" width="10" height="72" rx="5" fill="url(#waveGrad)" filter="url(#icon-glow)" />
+    
+    <!-- Bar 5 -->
+    <rect x="76" y="42" width="10" height="16" rx="5" fill="url(#waveGrad)" opacity="0.5" />
+
+    <!-- Pulse Dot -->
+    <circle cx="65" cy="10" r="3.5" fill="#38bdf8" filter="url(#icon-glow)" />
+  </g>
+</svg>

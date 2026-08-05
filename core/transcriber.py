@@ -42,7 +42,7 @@ class Transcriber:
         # "Auto" (or None) means let whisper detect the language automatically.
         segments_iter, info = self.model.transcribe(
             audio_path,
-            language=language if language and language != "Auto" else None,
+            language=language if language and language != "auto" else None,
             beam_size=5,
             vad_filter=True,   # skip silent sections for cleaner output
         )

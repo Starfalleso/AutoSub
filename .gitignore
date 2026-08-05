@@ -17,3 +17,9 @@ Thumbs.db
 
 # Runtime
 *.srt
+
+# Build
+dist/
+build/
+*.spec
+!AutoSub.spec

@@ -1,16 +1,14 @@
-# Central stylesheet for AutoSub. Uses object names (e.g. #card, #generateBtn)
-# to style specific widgets. ACCENT is exported for use in QPainter (background).
-ACCENT = "#6366f1"
+# Central stylesheet for AutoSub. Widgets are styled by object name.
+# ACCENT is exported for use in QPainter (background).
+ACCENT = "#4f46e5"
 ACCENT_LIGHT = "#818cf8"
-ACCENT_DARK = "#4f46e5"
-ACCENT_2 = "#8b5cf6"
 
 MODERN_DARK = f"""
 /* ===== GLOBAL ===== */
 QWidget {{
     background: transparent;
-    color: #e4e4e7;
-    font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', 'Inter', Roboto, Arial, sans-serif;
     font-size: 13px;
 }}
 
@@ -18,247 +16,175 @@ QLabel {{
     background: transparent;
 }}
 
-/* ===== CARD ===== */
-QFrame#card {{
-    background-color: rgba(24, 24, 29, 0.72);
-    border: 1px solid rgba(63, 63, 70, 0.45);
+/* ===== PANEL CARD ===== */
+QFrame#panel {{
+    background-color: rgba(30, 41, 59, 0.40);
+    border: 1px solid #334155;
     border-radius: 16px;
 }}
 
 /* ===== SECTION LABEL ===== */
-QLabel#sectionTitle {{
-    font-size: 11px;
+QLabel#sectionLabel {{
+    font-size: 10px;
     font-weight: 700;
-    color: #71717a;
+    color: #94a3b8;
     letter-spacing: 1.2px;
-    padding-left: 4px;
+    padding-left: 2px;
 }}
 
 /* ===== HEADER ===== */
-QLabel#appTitle {{
-    font-size: 24px;
-    font-weight: 800;
-    color: #fafafa;
-    letter-spacing: -0.5px;
+QFrame#logoBadge {{
+    background-color: transparent;
+    border-radius: 10px;
 }}
 
-QLabel#appTitleAccent {{
-    font-size: 24px;
-    font-weight: 800;
-    color: {ACCENT_LIGHT};
-    letter-spacing: -0.5px;
+QLabel#appTitle {{
+    font-size: 18px;
+    font-weight: 700;
+    color: #f8fafc;
 }}
 
 QLabel#tagline {{
     font-size: 12px;
-    color: #71717a;
-    letter-spacing: 0.3px;
+    color: #64748b;
 }}
 
-/* ===== LOGO BADGE ===== */
-QFrame#logoBadge {{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-        stop:0 {ACCENT}, stop:1 {ACCENT_2});
-    border-radius: 14px;
-}}
-
-QLabel#logoText {{
-    color: white;
-    font-size: 16px;
-    font-weight: 800;
-}}
-
-/* ===== BUTTONS ===== */
-QPushButton {{
-    background-color: #27272a;
-    color: #e4e4e7;
-    border: 1px solid #3f3f46;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-weight: 600;
-    font-size: 13px;
-}}
-
-QPushButton:hover {{
-    background-color: #3f3f46;
-    border-color: #52525b;
-}}
-
-QPushButton:pressed {{
-    background-color: #18181b;
-}}
-
-QPushButton:disabled {{
-    background-color: rgba(24, 24, 27, 0.6);
-    color: #52525b;
-    border-color: #27272a;
-}}
-
-QPushButton#browseBtn {{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-        stop:0 {ACCENT}, stop:1 {ACCENT_LIGHT});
-    border: none;
-    color: white;
-    font-weight: 700;
-}}
-
-QPushButton#browseBtn:hover {{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-        stop:0 {ACCENT_LIGHT}, stop:1 #a5b4fc);
-}}
-
-QPushButton#browseBtn:pressed {{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-        stop:0 {ACCENT_DARK}, stop:1 {ACCENT});
-}}
-
-QPushButton#generateBtn {{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-        stop:0 {ACCENT}, stop:1 {ACCENT_2});
-    border: none;
-    color: white;
-    font-weight: 700;
-    font-size: 14px;
-    border-radius: 12px;
-}}
-
-QPushButton#generateBtn:hover {{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-        stop:0 {ACCENT_LIGHT}, stop:1 #a78bfa);
-}}
-
-QPushButton#generateBtn:pressed {{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-        stop:0 {ACCENT_DARK}, stop:1 #7c3aed);
-}}
-
-QPushButton#generateBtn:disabled {{
-    background: rgba(63, 63, 70, 0.6);
-    color: #52525b;
-}}
-
-QPushButton#saveBtn {{
-    background-color: rgba(24, 24, 27, 0.7);
-    border: 1px solid #3f3f46;
-    color: #e4e4e7;
-    font-weight: 600;
-}}
-
-QPushButton#saveBtn:hover {{
-    background-color: #27272a;
-    border-color: {ACCENT};
-    color: white;
-}}
-
-/* ===== COMBO BOX ===== */
+/* ===== INPUTS (dropdowns) ===== */
 QComboBox {{
-    background-color: rgba(24, 24, 27, 0.8);
-    color: #e4e4e7;
-    border: 1px solid #3f3f46;
-    border-radius: 10px;
+    background-color: #0f172a;
+    color: #f1f5f9;
+    border: 1px solid #334155;
+    border-radius: 8px;
     padding: 0 12px;
     font-size: 13px;
 }}
 
 QComboBox:hover {{
-    border-color: #52525b;
-}}
-
-QComboBox:focus {{
-    border-color: {ACCENT};
+    border-color: #4f46e5;
 }}
 
 QComboBox::drop-down {{
     border: none;
-    width: 30px;
+    width: 28px;
 }}
 
 QComboBox::down-arrow {{
     image: none;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #a1a1aa;
-    margin-right: 10px;
+    border-top: 5px solid #94a3b8;
+    margin-right: 8px;
 }}
 
 QComboBox QAbstractItemView {{
-    background-color: #1c1c21;
-    color: #e4e4e7;
-    selection-background-color: {ACCENT};
-    selection-color: white;
-    border: 1px solid #3f3f46;
-    border-radius: 10px;
+    background-color: #0f172a;
+    color: #f1f5f9;
+    selection-background-color: #4f46e5;
+    selection-color: #ffffff;
+    border: 1px solid #334155;
+    border-radius: 8px;
     padding: 6px;
     outline: none;
 }}
 
-/* ===== PROGRESS BAR ===== */
-QProgressBar {{
+/* ===== GENERATE BUTTON ===== */
+QPushButton#generateBtn {{
+    background-color: #4f46e5;
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
-    background-color: rgba(39, 39, 42, 0.6);
-    height: 8px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
 }}
 
-QProgressBar::chunk {{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-        stop:0 {ACCENT}, stop:1 {ACCENT_2});
-    border-radius: 4px;
+QPushButton#generateBtn:hover {{
+    background-color: #6366f1;
 }}
 
-/* ===== TEXT EDIT ===== */
+QPushButton#generateBtn:pressed {{
+    background-color: #4338ca;
+}}
+
+QPushButton#generateBtn:disabled {{
+    background-color: #334155;
+    color: #64748b;
+}}
+
+/* ===== EXPORT FORMAT SEGMENT ===== */
+QPushButton#formatBtn {{
+    background-color: #334155;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+}}
+
+QPushButton#formatBtn:hover {{
+    background-color: #475569;
+}}
+
+QPushButton#formatBtnActive {{
+    background-color: #4f46e5;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+}}
+
+/* ===== EXPORT SUBTITLES (outlined) ===== */
+QPushButton#exportBtn {{
+    background-color: transparent;
+    border: 1.5px solid #4f46e5;
+    color: #818cf8;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}}
+
+QPushButton#exportBtn:hover {{
+    background-color: rgba(79, 70, 229, 0.12);
+}}
+
+QPushButton#exportBtn:pressed {{
+    background-color: rgba(79, 70, 229, 0.22);
+}}
+
+QPushButton#exportBtn:disabled {{
+    border-color: #334155;
+    color: #64748b;
+}}
+
+/* ===== TEXT EDIT (preview) ===== */
 QTextEdit {{
-    background-color: rgba(12, 12, 16, 0.85);
-    color: #e4e4e7;
-    border: 1px solid #27272a;
-    border-radius: 12px;
+    background-color: #090d16;
+    color: #e2e8f0;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
     padding: 12px;
     font-family: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
     font-size: 12px;
-    selection-background-color: {ACCENT};
+    selection-background-color: #4f46e5;
 }}
 
 QTextEdit:focus {{
-    border-color: #3f3f46;
-}}
-
-/* ===== STATUS LABELS ===== */
-QLabel#status {{
-    color: #a1a1aa;
-    font-size: 12px;
-}}
-
-QLabel#statusSuccess {{
-    color: #34d399;
-    font-weight: 600;
-    font-size: 12px;
-}}
-
-QLabel#statusError {{
-    color: #f87171;
-    font-weight: 600;
-    font-size: 12px;
-}}
-
-/* ===== DROP ZONE ===== */
-QFrame#dropZone {{
-    border: 2px dashed #3f3f46;
-    border-radius: 16px;
-    background-color: rgba(24, 24, 29, 0.5);
-}}
-
-QFrame#dropZone:hover {{
-    border-color: {ACCENT};
-    background-color: rgba(99, 102, 241, 0.08);
+    border-color: #334155;
 }}
 
 /* ===== STATUS BAR ===== */
 QStatusBar {{
-    background-color: rgba(12, 12, 16, 0.8);
-    color: #71717a;
-    border-top: 1px solid #18181b;
+    background-color: #0f172a;
+    color: #94a3b8;
+    border-top: 1px solid #1e293b;
     padding: 6px;
-    font-size: 12px;
+    font-size: 11px;
+}}
+
+QStatusBar::item {{
+    border: none;
 }}
 
 /* ===== SCROLLBAR ===== */
@@ -269,13 +195,13 @@ QScrollBar:vertical {{
 }}
 
 QScrollBar::handle:vertical {{
-    background: #3f3f46;
+    background: #334155;
     border-radius: 4px;
     min-height: 30px;
 }}
 
 QScrollBar::handle:vertical:hover {{
-    background: #52525b;
+    background: #475569;
 }}
 
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{
@@ -284,18 +210,5 @@ QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{
 
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
     background: none;
-}}
-
-/* ===== FILE CHIP ===== */
-QFrame#fileChip {{
-    background-color: rgba(99, 102, 241, 0.10);
-    border: 1px solid rgba(99, 102, 241, 0.35);
-    border-radius: 10px;
-}}
-
-QLabel#fileName {{
-    color: #e4e4e7;
-    font-size: 12px;
-    font-weight: 600;
 }}
 """
