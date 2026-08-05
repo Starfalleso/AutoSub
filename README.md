@@ -1,5 +1,4 @@
-<img width="1001" height="727" alt="autosub" src="https://github.com/user-attachments/assets/a003ba97-edb7-41ed-9f16-5e9794ec4dff" />
-# AutoSub
+
 
 AI-powered subtitle generator for desktop. Drop in an audio/video file and
 AutoSub transcribes it locally using Whisper models via `faster-whisper`, then
